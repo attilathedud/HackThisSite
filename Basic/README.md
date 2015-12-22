@@ -6,12 +6,16 @@ Since there is no password file, there is no password, so we enter nothing and p
 
 ###Basic 3:
 If we look in the source, we see the following line:
-    <input type="hidden" name="file" value="password.php">
+```
+<input type="hidden" name="file" value="password.php">
+```
 With that information, it makes sense to append password.php to the url and we are revealed the password.
 
 ###Basic 4:
 So for this, we can assume that we have to edit the email address that the reminder is sent to. Look at the source and we see this line:
-    <input type="hidden" name="to" value="sam@hackthissite.org">
+```
+<input type="hidden" name="to" value="sam@hackthissite.org">
+```
 Just set the value to your email and you will be sent the password.
 
 ###Basic 5:
