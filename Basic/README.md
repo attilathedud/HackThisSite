@@ -74,3 +74,8 @@ That's a suspicious looking cooking - modifying it to yes will give us the acces
 ```
 document.cookie = "level10_authorized=yes"
 ```
+
+###Basic 11:
+So from the page, we get a hint that something is hidden; run a directory scanner and you should get two items of interest: index.php (where we will enter our password) and /e/. Going to /e/ reveals a list of subdirectories down to /e/l/t/o/n/.
+
+Since this is an apache server, we'll see if we can access .htaccess. We can, and it will reveal the DaAnswer subdirectory. Navigate there and you will be given a simple riddle to get the answer.
