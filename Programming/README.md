@@ -4,3 +4,5 @@ This is a relatively easy challenge due to Python's ability to easily read and p
 ### Problem 2 (Analyze the picture and find the ascii code)
 Using pypng, we can grab an array of the image's pixels and simply iterate over them, calculating distance as we go. From there, we split the morse code into an array and use a dictionary to map each series to a character.
 
+### Problem 12 (String manipulation)
+The algorithm is basically written out in the introduction text. The most complex part of this challenge is writing the regex to grab digits and directly manipulating the DOM to deal with the time-limit. Hence why the solution is a script intended to run directly against the page.
