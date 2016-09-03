@@ -31,3 +31,18 @@ int var as in   7       ;int = 7
 out var int             ;67
 ```
 
+###ExtBasic 5
+The notice at the top of this challenge gives us a clue that our error is most likely on the 'sed' line. Sed is an undocumented nightmare, but there exists a pretty good tutorial here: http://www.grymoire.com/Unix/Sed.html#uh-8. The key line we are looking for: "With no flags, the first matched substitution is changed. With the "g" option, all matches are changed."
+
+With that, we see the error in the script: it is only matching the first occurance! Simply add the "g" option to fix it.
+```
+sed -E "s/eval/safeeval/g" <exec.php >tmp && touch OK
+```
+
+###ExtBasic 6
+The tip for this challenge: "This site is run by a new sysadmin who does not know much about web configuration." We can see there is no way auth will work for user/pass, but if we instead just set the passed variable to TRUE? Turns out that works perfectly:
+```
+http://moo.com/moo.php?passed=TRUE
+```
+
+
