@@ -15,3 +15,11 @@ Since we have no clues to go on, let's try some sql injection:
 username: admin
 password: ' or 1=1 --
 ```
+
+###Realistic 3
+Notice this tip when inspecting the source of the hacker's page:
+```
+<!--Note to the webmasterThis website has been hacked, but not totally destroyed. The old website is still up. I simply copied the old index.html file to oldindex.html and remade this one. Sorry about the inconvenience.-->
+```
+
+Navigate to /oldindex.html to find the original page. We can assume there must be a vulnerbility in the submit functionality. Since the poem won't be displayed, that rules out xss attacks - instead, we can just try overwriting files. Simply copy oldindex.html and give the poem the title ../index.html. 
