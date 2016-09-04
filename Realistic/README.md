@@ -40,3 +40,16 @@ It's worth a shot to try and exploit this possibility. We can tell from the layo
 ###Realistic 5
 Trying the database login, we are taken to /secret/admin.php. Navigate up to /secret/ and we see an admin.php.bak file that appears to contain a hash. It looks like an md5 hash, but no rainbow table matches it and no passwords < 5 characters do either. Thinking the challenge doesn't want you to waste time brute-forcing, take a note at the "10 years ago" comment. Released in 1990, MD4 seems like a good algorithm to try and brute-force with. You will find the password fairly quickly too.
 
+###Realisitic 7
+Bringing up each of the pages reveals they have the following form:
+```
+showimages.php?file=patriot.txt
+```
+
+Navigating to the /images/ directory reveals an /admin/ directory protected by an .htpasswd file. Here we can use showimages to get the information:
+```
+showimages.php?file=images/admin/.htpasswd
+```
+
+Simple run the hash you get back through John the Ripper to get your password.
+
